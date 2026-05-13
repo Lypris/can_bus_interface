@@ -13,7 +13,7 @@ interface WindTurbineGaugeProps {
 }
 
 export const WindTurbineGauge = memo(function WindTurbineGauge({
-  label = 'Turbine Speed',
+  label = 'Vitesse de l\'éolienne',
   value,
   unit = 'RPM',
   minValue = 0,
@@ -52,11 +52,11 @@ export const WindTurbineGauge = memo(function WindTurbineGauge({
 
   return (
     <div className={cn('rounded-2xl border border-border bg-card/85 p-4', className)}>
-      <div className="flex items-center justify-between">
-        <p className="text-lg text-muted-foreground">{label}</p>
-        <p className="font-heading text-4xl tabular-nums leading-none">
+      <div className="flex flex-col items-center text-center">
+        <p className="text-5xl font-semibold leading-none text-muted-foreground">{label}</p>
+        <p className="mt-2 font-heading text-5xl leading-none tabular-nums text-foreground">
           {Math.round(safeValue)}
-          <span className="ml-1 text-2xl text-muted-foreground">{unit}</span>
+          <span className="ml-1 text-3xl text-muted-foreground">{unit}</span>
         </p>
       </div>
 
@@ -87,7 +87,7 @@ export const WindTurbineGauge = memo(function WindTurbineGauge({
       </div>
 
       <p className="mt-3 text-base text-muted-foreground">
-        {rotorConfig.active ? 'Active generation' : safeValue > 0 ? 'Idle spin' : 'Stopped'}
+        {rotorConfig.active ? 'Production active' : safeValue > 0 ? 'Rotation à vide' : 'Arrêtée'}
       </p>
     </div>
   )

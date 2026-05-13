@@ -9,57 +9,41 @@ export type InterfaceTheme = 'sea' | 'sand' | 'forest'
 
 interface SettingsPageProps {
   mode: UserMode
-  username: string
   themeMode: 'light' | 'dark'
   interfaceTheme: InterfaceTheme
   onModeChange: (mode: UserMode) => void
-  onUsernameChange: (value: string) => void
   onThemeModeToggle: () => void
   onInterfaceThemeChange: (theme: InterfaceTheme) => void
 }
 
 const modeLabels: Array<{ value: UserMode; label: string }> = [
-  { value: 'normal', label: 'Normal' },
-  { value: 'eco', label: 'Eco' },
-  { value: 'advanced', label: 'Advanced' },
+  { value: 'standard', label: 'Standard' },
+  { value: 'advanced', label: 'Avancé' },
 ]
 
 const themeLabels: Array<{ value: InterfaceTheme; label: string }> = [
-  { value: 'sea', label: 'Sea' },
-  { value: 'sand', label: 'Sand' },
-  { value: 'forest', label: 'Forest' },
+  { value: 'sea', label: 'Mer' },
+  { value: 'sand', label: 'Sable' },
+  { value: 'forest', label: 'Forêt' },
 ]
 
 export const SettingsPage = memo(function SettingsPage({
   mode,
-  username,
   themeMode,
   interfaceTheme,
   onModeChange,
-  onUsernameChange,
   onThemeModeToggle,
   onInterfaceThemeChange,
 }: SettingsPageProps) {
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Settings</CardTitle>
-        <CardDescription>User profile, operating mode, and visual theme.</CardDescription>
+        <CardTitle className="text-center text-5xl">Paramètres</CardTitle>
+        <CardDescription>Profil utilisateur, mode de fonctionnement et thème visuel.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4 text-base">
         <section className="rounded-2xl border border-border bg-background/50 p-4">
-          <p className="text-lg text-muted-foreground">Username</p>
-          <input
-            value={username}
-            onChange={(event) => onUsernameChange(event.target.value)}
-            maxLength={24}
-            className="mt-2 h-12 w-full rounded-xl border border-border bg-card px-3 text-xl"
-            aria-label="Username"
-          />
-        </section>
-
-        <section className="rounded-2xl border border-border bg-background/50 p-4">
-          <p className="mb-2 text-lg text-muted-foreground">User mode</p>
+          <p className="mb-2 text-lg text-muted-foreground">Mode utilisateur</p>
           <div className="flex gap-2">
             {modeLabels.map((entry) => (
               <Button
@@ -77,17 +61,17 @@ export const SettingsPage = memo(function SettingsPage({
         <section className="rounded-2xl border border-border bg-background/50 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-lg text-muted-foreground">Light / dark style</p>
-              <p className="text-sm text-muted-foreground">Current: {themeMode}</p>
+              <p className="text-lg text-muted-foreground">Style clair / sombre</p>
+              <p className="text-sm text-muted-foreground">Actuel : {themeMode === 'dark' ? 'sombre' : 'clair'}</p>
             </div>
             <Button variant="secondary" size="lg" onClick={onThemeModeToggle}>
-              Toggle {themeMode === 'dark' ? 'Light' : 'Dark'}
+              Basculer en {themeMode === 'dark' ? 'clair' : 'sombre'}
             </Button>
           </div>
         </section>
 
         <section className="rounded-2xl border border-border bg-background/50 p-4">
-          <p className="mb-2 text-lg text-muted-foreground">Interface theme</p>
+          <p className="mb-2 text-lg text-muted-foreground">Thème de l'interface</p>
           <div className="grid grid-cols-3 gap-2">
             {themeLabels.map((entry) => (
               <button

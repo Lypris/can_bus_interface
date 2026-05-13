@@ -23,21 +23,21 @@ export const TopStatusBar = memo(function TopStatusBar({ connected, fault, updat
           <ActivitySquare size={22} />
         </div>
         <div>
-          <h1 className="font-heading text-3xl leading-none text-foreground">Home Energy Deck</h1>
-          <p className="text-sm text-muted-foreground">Touch UI over CAN + Node-RED uibuilder</p>
+          <h1 className="font-heading text-3xl leading-none text-foreground">Tableau de bord énergie</h1>
+          <p className="text-sm text-muted-foreground">Interface tactile sur CAN + Node-RED uibuilder</p>
         </div>
       </div>
 
       <div className="flex items-center gap-2">
         <Badge variant={connected ? 'success' : 'danger'} className="gap-2">
           {connected ? <Wifi size={16} /> : <WifiOff size={16} />}
-          {connected ? 'Live' : 'Offline'}
+          {connected ? 'En ligne' : 'Hors ligne'}
         </Badge>
         <Badge variant={fault ? 'danger' : 'outline'} className="gap-2">
           <AlertTriangle size={16} />
-          {fault ? 'Fault' : 'Normal'}
+          {fault ? 'Défaut' : 'Normal'}
         </Badge>
-        <Badge variant="outline">RX {formatAge(updatedAgoMs)} ago</Badge>
+        <Badge variant="outline">RX il y a {formatAge(updatedAgoMs)}</Badge>
       </div>
     </header>
   )

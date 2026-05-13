@@ -14,7 +14,7 @@ interface ControlPanelProps {
   onStopAll: () => void
 }
 
-const modes: ControlState['mode'][] = ['eco', 'normal', 'boost']
+const modes: ControlState['mode'][] = ['standard', 'advanced']
 
 export const ControlPanel = memo(function ControlPanel({
   controls,
@@ -28,27 +28,27 @@ export const ControlPanel = memo(function ControlPanel({
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Control Panel</CardTitle>
-        <CardDescription>Touch commands sent to Node-RED in real-time.</CardDescription>
+        <CardTitle>Panneau de commande</CardTitle>
+        <CardDescription>Commandes tactiles envoyées à Node-RED en temps réel.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="rounded-xl border border-border bg-background/60 p-3">
           <div className="flex items-center justify-between">
-            <p className="text-lg font-semibold">Pump</p>
+            <p className="text-lg font-semibold">Pompe</p>
             <Switch
               checked={controls.pumpEnabled}
               onCheckedChange={onPumpToggle}
-              aria-label="Toggle pump"
+              aria-label="Basculer la pompe"
             />
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
-            {controls.pumpEnabled ? 'Pump is enabled' : 'Pump is disabled'}
+            {controls.pumpEnabled ? 'La pompe est activée' : 'La pompe est désactivée'}
           </p>
         </div>
 
         <div className="rounded-xl border border-border bg-background/60 p-3">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-lg font-semibold">Fan speed</p>
+            <p className="text-lg font-semibold">Vitesse du ventilateur</p>
             <p className="font-heading text-2xl tabular-nums">{controls.fanSpeed}%</p>
           </div>
           <Slider
@@ -57,7 +57,7 @@ export const ControlPanel = memo(function ControlPanel({
             max={100}
             step={5}
             onValueChange={(value) => onFanSpeedChange(value[0] ?? controls.fanSpeed)}
-            aria-label="Set fan speed"
+            aria-label="Régler la vitesse du ventilateur"
           />
         </div>
 
@@ -75,9 +75,9 @@ export const ControlPanel = memo(function ControlPanel({
         </div>
 
         <div className="flex items-center justify-between rounded-xl border border-border bg-background/60 p-3">
-          <p className="text-lg font-semibold">Active mode: {modeLabel}</p>
+          <p className="text-lg font-semibold">Mode actif : {modeLabel}</p>
           <Button variant="danger" size="lg" onClick={onStopAll}>
-            Stop All
+            Tout arrêter
           </Button>
         </div>
       </CardContent>

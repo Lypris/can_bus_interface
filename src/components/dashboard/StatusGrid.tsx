@@ -39,15 +39,15 @@ export const StatusGrid = memo(function StatusGrid({ telemetry }: StatusGridProp
 
   return (
     <section className="grid grid-cols-2 gap-3">
-      <MetricCard label="Bus Voltage" value={`${telemetry.voltage.toFixed(1)} V`} hint="Nominal 12V" icon={Zap} />
-      <MetricCard label="Bus Current" value={`${telemetry.current.toFixed(1)} A`} hint="Realtime" icon={Gauge} />
-      <MetricCard label="Motor Speed" value={`${Math.round(telemetry.rpm)} rpm`} hint="Estimated" icon={Wind} />
-      <MetricCard label="Power" value={`${power.toFixed(0)} W`} hint="Voltage x Current" icon={Zap} />
+      <MetricCard label="Tension du bus" value={`${telemetry.voltage.toFixed(1)} V`} hint="Nominale 12V" icon={Zap} />
+      <MetricCard label="Courant du bus" value={`${telemetry.current.toFixed(1)} A`} hint="Temps réel" icon={Gauge} />
+      <MetricCard label="Vitesse moteur" value={`${Math.round(telemetry.rpm)} tr/min`} hint="Estimée" icon={Wind} />
+      <MetricCard label="Puissance" value={`${power.toFixed(0)} W`} hint="Tension x courant" icon={Zap} />
 
       <Card className="col-span-2">
         <CardHeader className="pb-2">
-          <CardTitle className="text-xl">Thermal State</CardTitle>
-          <CardDescription className="text-base">Sensor {telemetry.temperature.toFixed(1)} deg C</CardDescription>
+          <CardTitle className="text-xl">Etat thermique</CardTitle>
+          <CardDescription className="text-base">Capteur {telemetry.temperature.toFixed(1)} °C</CardDescription>
         </CardHeader>
         <CardContent>
           <Progress value={thermalLoad} />

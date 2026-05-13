@@ -15,7 +15,7 @@ interface PageIndicatorProps {
 
 export const PageIndicator = memo(function PageIndicator({ pages, activeIndex, onSelect }: PageIndicatorProps) {
   return (
-    <nav className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-border/80 bg-card/95 px-3 shadow-panel" aria-label="Page navigation">
+    <nav className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-border/80 bg-card/95 px-3 shadow-panel" aria-label="Navigation des pages">
       {pages.map((page, index) => {
         const active = index === activeIndex
 

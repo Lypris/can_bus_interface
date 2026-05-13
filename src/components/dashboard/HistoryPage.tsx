@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { HistoryPoint } from '@/types/dashboard'
 
 interface HistoryPageProps {
@@ -66,12 +66,11 @@ export const HistoryPage = memo(function HistoryPage({ points }: HistoryPageProp
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Energy History</CardTitle>
-        <CardDescription>Lightweight SVG trends optimized for Raspberry Pi.</CardDescription>
+        <CardTitle className="text-center text-5xl">Historique énergétique</CardTitle>
       </CardHeader>
       <CardContent className="grid h-[calc(100%-5.25rem)] grid-cols-1 gap-3 overflow-hidden">
-        <GraphPanel title="Wind production" values={production} unit="W" stroke="hsl(var(--primary))" />
-        <GraphPanel title="Home consumption" values={consumption} unit="W" stroke="hsl(var(--warning))" />
+        <GraphPanel title="Production éolienne" values={production} unit="W" stroke="hsl(var(--primary))" />
+        <GraphPanel title="Consommation du foyer" values={consumption} unit="W" stroke="hsl(var(--warning))" />
       </CardContent>
     </Card>
   )

@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import * as SwitchPrimitives from '@radix-ui/react-switch'
 
 import { cn } from '@/lib/utils'
 
@@ -19,66 +18,61 @@ export const BulbSwitch = memo(function BulbSwitch({
   className,
 }: BulbSwitchProps) {
   return (
-    <div
+    <button
+      type="button"
+      onClick={() => onCheckedChange(!checked)}
+      disabled={disabled}
+      aria-pressed={checked}
+      aria-label={`${label} ${checked ? 'allumée' : 'éteinte'}`}
       className={cn(
-        'flex min-h-44 items-center justify-between rounded-2xl border border-border bg-card/85 px-5 py-4',
+        'flex min-h-52 w-full items-center justify-between rounded-2xl border border-border bg-card/85 px-6 py-5 text-left',
+        'transition-transform duration-150 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50',
         checked ? 'shadow-[0_0_22px_hsl(var(--warning)/0.18)]' : 'shadow-none',
+        disabled ? 'cursor-not-allowed' : 'cursor-pointer',
         className,
       )}
     >
       <div>
-        <p className="text-3xl font-semibold leading-none">{label}</p>
-        <p className="mt-2 text-lg text-muted-foreground">{checked ? 'ON' : 'OFF'}</p>
+        <p className="text-5xl font-semibold leading-none">{label}</p>
+        <p className="mt-3 text-4xl text-muted-foreground">{checked ? 'Allumée' : 'Éteinte'}</p>
       </div>
 
-      <SwitchPrimitives.Root
-        checked={checked}
-        onCheckedChange={onCheckedChange}
-        disabled={disabled}
-        aria-label={`Toggle ${label}`}
+      <div
         className={cn(
-          'relative flex min-h-32 min-w-28 items-center justify-center rounded-2xl border border-border/80 bg-background/70 p-2',
-          'transition-transform duration-150 active:scale-95',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-40',
+          'relative flex h-32 w-32 flex-col items-center justify-center rounded-2xl border border-border/80 bg-background/70 p-3',
+          'transition-transform duration-200',
         )}
+        aria-hidden="true"
       >
         <div
           className={cn(
-            'relative flex h-24 w-16 flex-col items-center',
-            'transition-transform duration-200 data-[state=checked]:scale-105',
+            'relative flex h-24 w-24 items-center justify-center rounded-full border',
+            'transition-colors duration-200',
+            checked
+              ? 'border-warning bg-warning/90 shadow-[0_0_26px_hsl(var(--warning)/0.7)]'
+              : 'border-muted-foreground/30 bg-muted/55 shadow-none',
           )}
-          data-state={checked ? 'checked' : 'unchecked'}
         >
-          <div
+          <span
             className={cn(
-              'relative h-16 w-16 rounded-full border',
-              'transition-colors duration-200',
-              checked
-                ? 'border-warning bg-warning/90 shadow-[0_0_26px_hsl(var(--warning)/0.7)]'
-                : 'border-muted-foreground/30 bg-muted/55 shadow-none',
+              'absolute left-1/2 top-[53%] h-7 w-1.5 -translate-x-1/2 rounded-full',
+              checked ? 'bg-warning-foreground/80' : 'bg-muted-foreground/45',
             )}
-          >
-            <span
-              className={cn(
-                'absolute left-1/2 top-[53%] h-5 w-1 -translate-x-1/2 rounded-full',
-                checked ? 'bg-warning-foreground/80' : 'bg-muted-foreground/45',
-              )}
-            />
-            <span
-              className={cn(
-                'absolute left-1/2 top-[68%] h-1.5 w-5 -translate-x-1/2 rounded-full',
-                checked ? 'bg-warning-foreground/80' : 'bg-muted-foreground/45',
-              )}
-            />
-          </div>
-          <div
+          />
+          <span
             className={cn(
-              'mt-1 h-4 w-9 rounded-md border',
-              checked ? 'border-warning/70 bg-warning/45' : 'border-border bg-muted/70',
+              'absolute left-1/2 top-[68%] h-3 w-8 -translate-x-1/2 rounded-full',
+              checked ? 'bg-warning-foreground/80' : 'bg-muted-foreground/45',
             )}
           />
         </div>
-      </SwitchPrimitives.Root>
-    </div>
+        <div
+          className={cn(
+            'mt-3 h-5 w-12 rounded-md border',
+            checked ? 'border-warning/70 bg-warning/45' : 'border-border bg-muted/70',
+          )}
+        />
+      </div>
+    </button>
   )
 })
